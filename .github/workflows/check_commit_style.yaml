@@ -1,0 +1,47 @@
+name: Check commit style
+
+on:
+  pull_request:
+  push:
+    branches: [ main, develop ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  commit-style:
+    runs-on: saritasa-rocks-eks
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        id: install-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+            version: latest
+            virtualenvs-create: true
+            virtualenvs-in-project: true
+            installer-parallel: true
+      - name: Cache poetry dependencies
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: ${{ runner.os }}-${{ steps.install-python.outputs.python-version }}-${{ github.job }}-poetry-${{ hashFiles('**/poetry.lock') }}
+      # Install dependencies if cache does not exist
+      - name: Install local dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --only="commit-style"
+      - name: Check commit style
+        if: ${{ github.base_ref != '' }}
+        # Ignore branch rule since GitHub actions create it's own merge branch
+        # Ignore WIP/wip ignore rule
+        run: |
+          poetry run gitlint --commits "origin/${{github.base_ref}}..origin/${{github.head_ref}}" -c general.ignore=UC1 -c ignore-by-title.regex="^\[automated-commit]"

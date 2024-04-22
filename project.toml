@@ -1,0 +1,30 @@
+[project]
+schema-version = "0.2"
+id = "io.buildpacks.django-partitioning-backend"
+name = "Django Partitioning"
+version = "0.0.0"
+
+[[build.env]]
+name = "BP_CPYTHON_VERSION"
+value = "3.11.*"
+
+[build]
+exclude = [
+    ".venv",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".git",
+    ".github",
+    ".gitlint",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    ".env.local",
+    "docker-compose.yaml",
+    ".vscode",
+    ".cruft.json",
+    "/tasks.py",
+    "*.sql",
+    "README.md",
+    "docs/*",
+    "!docs/CHANGELOG.md",
+]

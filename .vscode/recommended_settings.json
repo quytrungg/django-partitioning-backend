@@ -1,0 +1,39 @@
+{
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+  },
+
+  "editor.rulers": [79],
+
+  "editor.bracketPairColorization.enabled": true,
+
+  "python.analysis.typeCheckingMode": "basic",
+
+  "python.analysis.inlayHints.functionReturnTypes": true,
+
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+
+  "gitlens.autolinks": [
+    {
+      "prefix": "DJPT-",
+      "url": "https://saritasa.atlassian.net/browse/DJPT-<num>"
+    },
+    {
+      "prefix": "SA3P-",
+      "url": "https://saritasa.atlassian.net/browse/SA3P-<num>"
+    },
+    {
+      "prefix": "SD-",
+      "url": "https://saritasa.atlassian.net/browse/SD-<num>"
+    }
+  ],
+
+  "[python]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+}

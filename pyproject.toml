@@ -1,0 +1,363 @@
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "5.*"
+# Different useful Django utils
+# https://django-extensions.readthedocs.io/en/latest/
+django-extensions = "^3.2.3"
+# Filter querysets dynamically
+# https://django-filter.readthedocs.io/en/stable/
+django-filter = "^24.1"
+# Raw operations on the image (like to crop avatars etc)
+# https://django-imagekit.readthedocs.io/en/latest/
+django-imagekit = "^5.0.0"
+# Case insensitive model fields
+# https://github.com/voiio/django-citext
+django-citext = "^1.0.0"
+# Django REST Framework
+# https://www.django-rest-framework.org/
+djangorestframework = "^3.15.0"
+# Secure token-based auth for drf
+# https://james1345.github.io/django-rest-knox/
+django-rest-knox = "^4.2.0"
+# OpenApi auto specs generator
+# https://drf-spectacular.readthedocs.io/en/latest/
+drf-spectacular="^0.27.1"
+# Standardize DRF API error responses with drf-spectacular support
+# https://drf-standardized-errors.readthedocs.io/en/latest/
+drf-standardized-errors = {extras = ["openapi"], version = "^0.13.0"}
+# Storage to AWS S3
+# https://django-storages.readthedocs.io/en/latest/
+django-storages = {extras = ["boto3"], version = "^1.14.2"}
+# Periodic tasks
+# https://github.com/celery/django-celery-beat
+django-celery-beat = "^2.6.0"
+# Redis cache backend for Django
+# https://github.com/jazzband/django-redis
+django-redis  = "^5.4.0"
+# Django health check
+# This project checks for various conditions and provides reports when anomalous behavior is detected.
+# https://github.com/KristianOellegaard/django-health-check
+django-health-check = "^3.18.1"
+# Decouple helps you to organize your settings so that you can change
+# parameters without having to redeploy your app.
+# https://github.com/HBNetwork/python-decouple
+python-decouple = "^3.8"
+# Python client for Sentry
+# https://docs.sentry.io/platforms/python/guides/django/
+sentry-sdk = "^1.42.0"
+# Low-level library for working with images
+# https://pillow.readthedocs.io/en/stable/
+pillow = "^10.2.0"
+# HTML sanitizing library that escapes or strips markup and attributes
+# https://github.com/matthiask/html-sanitizer
+html-sanitizer = "^2.3.1"
+# Needed for faster boto3 resolution
+# https://github.com/boto/botocore/issues/2926
+urllib3 = "2.0.6"
+# Database abstraction layer
+# https://pypi.org/project/psycopg-binary/
+psycopg = {extras = ["binary"], version = "^3.1.18"}
+# Celery
+# https://docs.celeryproject.org/en/stable/
+celery = {extras = ["redis"], version = "^5.3.6"}
+# DateTime manipulation library
+# https://arrow.readthedocs.io/en/stable/
+# Locked because of gitlint
+arrow = "1.2.3"
+# Prettified output in logging
+# https://rich.readthedocs.io/en/latest/introduction.html
+rich = "^13.7.1"
+# Convert Markdown syntax into HTML
+# https://github.com/lepture/mistune
+# Performance: https://github.com/lepture/mistune?tab=readme-ov-file#benchmarks
+mistune = "^3.0.2"
+
+[tool.poetry.group.devops.dependencies]
+# uwsgi
+# The uWSGI server as a Python module
+# https://pypi.org/project/pyuwsgi/
+pyuwsgi = "^2.0.23.post0"
+# uwsgitop is a top-like command that uses the uWSGI Stats Server to monitor your uwsgi application.
+# https://pypi.org/project/uwsgitop/
+uwsgitop = "^0.11"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.1.1"
+# Provides useful tools for testing Django apps
+# Docs https://pytest-django.readthedocs.io/en/latest/
+pytest-django = "^4.8.0"
+# To run test in parallel
+# Docs: https://pypi.org/project/pytest-xdist/
+pytest-xdist = "^3.5.0"
+# To prettify pytest output
+pytest-sugar = "^1.0.0"
+# Allows you to use fixtures in @pytest.mark.parametrize.
+# https://pypi.org/project/pytest-lazy-fixtures/
+pytest-lazy-fixtures = "^1.0.7"
+# Fast creating of model instances. May be used in tests
+# https://factoryboy.readthedocs.io/en/stable/
+factory-boy = "^3.3.0"
+
+[tool.poetry.group.dev.dependencies]
+# The Django Debug Toolbar is a configurable set of panels that display various debug information
+# about the current request/response and when clicked, display more details about the panel's content.
+# https://django-debug-toolbar.readthedocs.io/en/latest/
+django-debug-toolbar = "^4.3.0"
+# Control CORS headers from within the app
+# CORS is managed by Nginx in a production environment,
+# but this package provides CORS for local development with a local frontend.
+# https://pypi.org/project/django-cors-headers/
+django-cors-headers = "^4.3.1"
+# Needed to run runserver_plus
+werkzeug = "^3.0.1"
+# Improved REPL
+ipdb = "^0.13.13"
+ipython = "^8.22.2"
+# Provide management command to check if primary database is ready to accept
+# connections
+# https://github.com/painless-software/django-probes
+django-probes = "^1.7.0"
+
+[tool.poetry.group.local.dependencies]
+# Collection of invoke commands used by Saritasa
+# Invoke is a Python (2.7 and 3.4+) task execution tool & library,
+# drawing inspiration from various sources to arrive at a powerful & clean feature set.
+# http://www.pyinvoke.org/
+# https://github.com/saritasa-nest/saritasa-python-invocations/
+saritasa-invocations = {extras = ["env-settings"], version = "^1.1.0"}
+# Rich is a Python library for writing rich text (with color and style) to the terminal,
+# and for displaying advanced content such as tables, markdown, and syntax highlighted code.
+# https://rich.readthedocs.io/en/stable/introduction.html
+pre-commit = "^3.6.2"
+# For project managing and make-sync with boilerplate
+# Github action `sync_django_boilerplate` using `cruft` to check against django boilerplate and send a PR,
+# but not all changes will be applied automatically because of conflicts.
+# In this case, we need to switch to this PR branch and use cruft to sync with boilerplate manually
+# https://cruft.github.io/cruft/
+cruft = "^2.15.0"
+
+[tool.poetry.group.commit-style.dependencies]
+# Gitlint is a git commit message linter written in python: it checks your commit messages for style.
+# https://jorisroovers.com/gitlint/
+gitlint = "^0.19.1"
+
+[tool.pytest.ini_options]
+# --reuse-db:
+#   allow saving DB tables between test sessions (like --keepdb)
+# --capture=no
+#   allow use of ipdb during tests
+# --ff
+#   run last failed tests first
+addopts = [
+    "--reuse-db",
+    "--ff",
+    "--capture=no",
+]
+# skip all files inside following dirs
+norecursedirs = [
+    "_tmp",
+    "node_modules",
+    "src",
+]
+# set Django settings
+DJANGO_SETTINGS_MODULE = "config.settings.local"
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.lint]
+extend-select = [
+  # https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
+  "W",
+  "E",
+  # https://docs.astral.sh/ruff/rules/#mccabe-c90
+  "C90",
+  # https://docs.astral.sh/ruff/rules/#isort-i
+  "I",
+  # https://docs.astral.sh/ruff/rules/#pep8-naming-n
+  "N",
+  # https://docs.astral.sh/ruff/rules/#pydocstyle-d
+  "D",
+  # https://docs.astral.sh/ruff/rules/#pyupgrade-up
+  "UP",
+  # https://docs.astral.sh/ruff/rules/#flake8-annotations-ann
+  "ANN",
+  # https://docs.astral.sh/ruff/rules/#flake8-bandit-s
+  "S",
+  # https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
+  "B",
+  # https://docs.astral.sh/ruff/rules/#flake8-builtins-a
+  "A",
+  # https://docs.astral.sh/ruff/rules/#flake8-commas-com
+  "COM",
+  # https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4
+  "C4",
+  # https://docs.astral.sh/ruff/rules/#flake8-datetimez-dtz
+  "DTZ",
+  # https://docs.astral.sh/ruff/rules/#flake8-debugger-t10
+  "T10",
+  # https://docs.astral.sh/ruff/rules/#flake8-django-dj
+  "DJ",
+  # https://docs.astral.sh/ruff/rules/#flake8-print-t20
+  "T20",
+  # https://docs.astral.sh/ruff/rules/#flake8-simplify-sim
+  "PT",
+  # https://docs.astral.sh/ruff/rules/#flake8-simplify-sim
+  "SIM",
+  # https://docs.astral.sh/ruff/rules/#flake8-simplify-sim
+  "PTH",
+  # https://docs.astral.sh/ruff/rules/#flake8-todos-td
+  "TD",
+  # https://docs.astral.sh/ruff/rules/#eradicate-era
+  "ERA",
+  # https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf
+  "RUF"
+]
+ignore = [
+  # https://docs.astral.sh/ruff/rules/ANN101
+  "ANN101",
+  # https://docs.astral.sh/ruff/rules/ANN102
+  "ANN102",
+  # https://docs.astral.sh/ruff/rules/ANN002
+  "ANN002",
+  # https://docs.astral.sh/ruff/rules/ANN003
+  "ANN003",
+  # https://docs.astral.sh/ruff/rules/ANN401
+  "ANN401",
+  # https://docs.astral.sh/ruff/rules/D100
+  "D100",
+  # https://docs.astral.sh/ruff/rules/D107
+  "D107",
+  # https://docs.astral.sh/ruff/rules/D104
+  "D104",
+  # https://docs.astral.sh/ruff/rules/D105
+  "D105",
+  # https://docs.astral.sh/ruff/rules/D106
+  "D106",
+  # https://docs.astral.sh/ruff/rules/D203
+  "D203",
+  # https://docs.astral.sh/ruff/rules/D213
+  "D213",
+  # https://docs.astral.sh/ruff/rules/D407
+  "D407",
+  # https://docs.astral.sh/ruff/rules/N818
+  "N818",
+  # https://docs.astral.sh/ruff/rules/N999
+  "N999",
+  # https://docs.astral.sh/ruff/rules/C408
+  "C408",
+  # https://docs.astral.sh/ruff/rules/RUF012
+  "RUF012",
+]
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+  # https://docs.astral.sh/ruff/rules/F401
+  "F401",
+]
+"**/config/settings/**" = [
+  # https://docs.astral.sh/ruff/rules/F403
+  "F403",
+  # https://docs.astral.sh/ruff/rules/F405
+  "F405",
+  # https://docs.astral.sh/ruff/rules/E501
+  "E501",
+]
+"**/tests/*" = [
+  # https://docs.astral.sh/ruff/rules/S101
+  "S101",
+  # https://docs.astral.sh/ruff/rules/S106
+  "S106",
+  # https://docs.astral.sh/ruff/rules/S311
+  "S311",
+]
+"**/test_*" = [
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN201",
+]
+"**/conftest.py" = [
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN201",
+]
+"**/migrations/*" = [
+  # https://docs.astral.sh/ruff/rules/D101
+  "D101",
+  # https://docs.astral.sh/ruff/rules/E501
+  "E501",
+]
+"**/views**" = [
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN001",
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN201",
+]
+"**/admin**" = [
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN001",
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN201",
+]
+"**/api**" = [
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN001",
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN201",
+  # https://docs.astral.sh/ruff/rules/ANN202
+  "ANN202",
+]
+"**/open_api**" = [
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN001",
+  # https://docs.astral.sh/ruff/rules/ANN201
+  "ANN201",
+]
+"tasks.py" = [
+  # https://docs.astral.sh/ruff/rules/S106
+  "S106",
+]
+"**/apps.py" = [
+  # https://docs.astral.sh/ruff/rules/D102
+  "D102",
+]
+
+[tool.ruff.lint.isort]
+force-wrap-aliases = true
+split-on-trailing-comma = true
+section-order = [
+    "future",
+    "standard-library",
+    "django",
+    "drf",
+    "third-party",
+    "first-party",
+    "apps",
+    "local-folder",
+]
+[tool.ruff.lint.isort.sections]
+django = ["django"]
+drf = ["rest_framework"]
+apps = ["apps", "config", "libs"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+parametrize-names-type = "list"
+parametrize-values-type = "list"
+parametrize-values-row-type = "list"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+exclude = [
+  # Disabling for admin since it's just configs and black/ruff format one item
+  # tuples as one line
+  "**/admin.py",
+  "**/views.py",
+  "**/admin/*",
+  "**/views/*",
+]

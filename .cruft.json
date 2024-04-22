@@ -1,0 +1,17 @@
+{
+  "template": "git@github.com:saritasa-nest/saritasa-python-boilerplate-django.git",
+  "commit": "4db4d98022b8aaaac1469664304f29a888a1e9b9",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "Django Partitioning",
+      "jira_key": "DJPT",
+      "subdomain": "django-partitioning",
+      "repo_name": "django-partitioning-backend",
+      "repo_frontend_name": "django-partitioning-frontend",
+      "python_version": "3.11",
+      "_template": "git@github.com:saritasa-nest/saritasa-python-boilerplate-django.git"
+    }
+  },
+  "directory": null
+}
