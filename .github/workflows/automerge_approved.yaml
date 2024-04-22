@@ -30,7 +30,7 @@ jobs:
           private_key: ${{ secrets.SARITASA_GITHUB_BOT_PRIVATE_KEY }}
       # Docs for action: https://github.com/marketplace/actions/wait-on-check
       - name: Wait for checks to succeed
-        uses: lewagon/wait-on-check-action@v1.3.1
+        uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           # To wait for all other checks to complete, set `running-workflow-name`
