@@ -37,3 +37,14 @@ class AdminUserFactory(UserFactory):
 
     class Meta:
         model = models.User
+
+
+class PersonFactory(factory.django.DjangoModelFactory):
+    """Factory to generate test Person instance."""
+
+    first_name = factory.Faker("first_name")
+    last_name = factory.Faker("last_name")
+    birth_date = factory.Faker("date_of_birth", maximum_age=300)
+
+    class Meta:
+        model = models.Person

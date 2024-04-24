@@ -26,6 +26,7 @@ THIRD_PARTY = (
     "django_celery_beat",
     "django_extensions",
     "citext",
+    "psqlextra",
 )
 
 LOCAL_APPS = (

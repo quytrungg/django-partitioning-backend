@@ -7,6 +7,9 @@ from django.utils.translation import gettext_lazy as _
 import citext
 from imagekit import models as imagekitmodels
 from imagekit.processors import ResizeToFill, Transpose
+from psqlextra.manager import PostgresManager
+from psqlextra.models import PostgresPartitionedModel
+from psqlextra.types import PostgresPartitioningMethod
 
 from apps.core.models import BaseModel
 
@@ -114,3 +117,15 @@ class User(
 
     def __str__(self) -> str:
         return self.email
+
+
+class Person(PostgresPartitionedModel, BaseModel):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    birth_date = models.DateField()
+
+    class PartitioningMeta:
+        method = PostgresPartitioningMethod.RANGE
+        key = ["birth_date"]
+
+    objects = PostgresManager()

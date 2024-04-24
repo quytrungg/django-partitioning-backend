@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from imagekit.admin import AdminThumbnail
 
 from ..core.admin import BaseAdmin
-from .models import User
+from .models import Person, User
 
 
 @admin.register(User)
@@ -64,6 +64,33 @@ class UserAdmin(BaseAdmin, DjangoUserAdmin):
                     "is_superuser",
                     "groups",
                     "user_permissions",
+                ),
+            },
+        ),
+    )
+
+
+@admin.register(Person)
+class PersonAdmin(BaseAdmin):
+    """UI for Person model."""
+
+    list_display = (
+        "first_name",
+        "last_name",
+        "birth_date",
+    )
+    search_fields = (
+        "first_name",
+        "last_name",
+    )
+    date_hierarchy = "birth_date"
+    fieldsets = (
+        (
+            None, {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "birth_date",
                 ),
             },
         ),
