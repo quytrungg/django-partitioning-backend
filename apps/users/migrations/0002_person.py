@@ -3,6 +3,9 @@
 from django.db import migrations, models
 
 import psqlextra
+from psqlextra.backend.migrations.operations.add_default_partition import (
+    PostgresAddDefaultPartition,
+)
 from psqlextra.backend.migrations.operations.create_partitioned_model import (
     PostgresCreatePartitionedModel,
 )
@@ -43,8 +46,8 @@ class Migration(migrations.Migration):
                 ("objects", psqlextra.manager.manager.PostgresManager()),
             ],
         ),
-        # PostgresAddDefaultPartition(
-        #     model_name='Person',
-        #     name='default',
-        # ),
+        PostgresAddDefaultPartition(
+            model_name="Person",
+            name="default",
+        ),
     ]

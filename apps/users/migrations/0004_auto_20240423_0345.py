@@ -4,6 +4,7 @@ from django.db import migrations
 
 from psqlextra.backend.migrations.operations import (
     PostgresAddRangePartition,
+    PostgresDeleteDefaultPartition,
 )
 
 
@@ -13,32 +14,55 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # PostgresDeleteDefaultPartition(
-        #    model_name="person",
-        #    name="default",
-        # ),
+        PostgresDeleteDefaultPartition(
+            model_name="person",
+            name="default",
+        ),
         PostgresAddRangePartition(
             model_name="person",
-            name="people_partitioned_birthdays_1700_to_1799",
+            name="people_partitioned_birthdays_1700_to_1800",
             from_values="1700-01-01",
-            to_values="1799-12-31",
+            to_values="1800-01-01",
         ),
         PostgresAddRangePartition(
             model_name="person",
-            name="people_partitioned_birthdays_1800_to_1899",
+            name="people_partitioned_birthdays_1800_to_1900",
             from_values="1800-01-01",
-            to_values="1899-12-31",
+            to_values="1900-01-01",
         ),
         PostgresAddRangePartition(
             model_name="person",
-            name="people_partitioned_birthdays_1900_to_1999",
+            name="people_partitioned_birthdays_1900_to_2000",
             from_values="1900-01-01",
-            to_values="1999-12-31",
+            to_values="2000-01-01",
         ),
         PostgresAddRangePartition(
             model_name="person",
-            name="people_partitioned_birthdays_2000_to_2099",
+            name="people_partitioned_birthdays_2000_to_2100",
             from_values="2000-01-01",
-            to_values="2099-12-31",
+            to_values="2100-01-01",
         ),
+        # PostgresAddListPartition(
+        #     model_name="person",
+        #     name="people_partitioned_birthdays_2024",
+        #     values=["2024-02-29"],
+        # ),
+        # PostgresAddHashPartition(
+        #     model_name="person",
+        #     name="people_partitioned_birthdays_hash_1",
+        #     modulus=2,
+        #     remainder=0,
+        # ),
+        # PostgresDeleteHashPartition(
+        #     model_name="person",
+        #     name="people_partitioned_birthdays_hash_1",
+        # ),
+        # PostgresDeleteListPartition(
+        #     model_name="person",
+        #     name="people_partitioned_birthdays_2024",
+        # ),
+        # PostgresDeleteRangePartition(
+        #     model_name="person",
+        #     name="people_partitioned_birthdays_2000_to_2100",
+        # ),
     ]
